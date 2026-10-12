@@ -104,6 +104,8 @@ func main() throws {
         let expectedSignal = SIGILL
         #elseif arch(arm) || arch(arm64)
         let expectedSignal = SIGTRAP
+        #elseif arch(s390x)
+        let expectedSignal = SIGILL
         #else
         #error("unknown CPU architecture for which we don't know the expected signal for a crash")
         #endif

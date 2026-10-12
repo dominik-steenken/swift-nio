@@ -45,6 +45,8 @@ else
         assert_equal $exit_code $(( 128 + 5 )) # 5 == SIGTRAP aka trace trap, expected on ARM
     elif [[ $architecture =~ ^(x86|i386) ]]; then
         assert_equal $exit_code $(( 128 + 4 ))  # 4 == SIGILL aka illegal instruction, expected on x86
+    elif [[ $architecture =~ ^s390 ]]; then
+        assert_equal $exit_code $(( 128 + 4 ))  # 4 == SIGILL aka illegal instruction, expected on s390x
     else
         fail "unknown CPU architecture for which we don't know the expected signal for a crash"
     fi
