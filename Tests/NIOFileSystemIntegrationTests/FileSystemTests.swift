@@ -18,6 +18,11 @@ import NIOCore
 @preconcurrency import SystemPackage
 import XCTest
 
+// swift-system 1.7.0+ introduced its own `FileType` inside SystemPackage which
+// is transitively visible here.  Disambiguate so all bare `FileType` references
+// in this file resolve to the NIOFileSystem type.
+internal typealias FileType = _NIOFileSystem.FileType
+
 extension FilePath {
     static let testData = FilePath(#filePath)
         .removingLastComponent()  // FileHandleTests.swift
